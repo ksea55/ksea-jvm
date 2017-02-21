@@ -1,0 +1,41 @@
+一、运行时数据区域
+            Java虚拟机在执行java程序的过程中会把它所管理的内存划分为若干个不同的数据区域.
+
+            方法区(method area)、虚拟机栈(VM Stack)、本地方法栈(Native method Stack)、堆(heap)、程序计数器(Program Couter Register)
+
+
+1、程序计数器的特点:
+   该内存区域是为唯一一个在Java虚拟机中没有规定任何OutOfMemoryError情况的区域，并且是线程私有
+  
+
+
+2、虚拟机栈(VM Stack)
+            这个区域会抛出两种异常，①如果线程请求的栈深度大于虚拟机允许的栈深度将会抛出StackOverflowError异常
+                                    ②如果虚拟机可以动态扩展，当扩展时无法申请到足够的内存时会抛出OutOfMemoryError异常
+
+3、本地方法栈(Native method stack)
+           与虚拟机栈所发挥的作用非常相似，其区别主要在于虚拟机栈主要为虚拟机执行Java方法(也就是字节码) 服务，而本地方法栈是为虚拟机使用到的Natvie方法服务
+           本地方法栈同样会抛出StackOverflowError与OutOfMemoryError两个异常
+
+ 
+ 4、堆(heap)
+         堆是Java虚拟机中管理最大的内存一块，并且是被所有线程共享的一块内存区域，在虚拟机启动的时候创建，此区域主要目的是存放对象的实例。
+         堆是垃圾收集器管理的主要区域，因此也被叫做GC堆。
+         如果堆中没有足够的内存完成对象的实例分配并且堆再也无法进行扩展的时候，将会抛出OutOfMemoryError异常
+
+
+ 5、方法区(method area)
+         与Java堆(head)一样，是想成共享的一块内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据
+         也俗称非堆(Non-Heap)
+         垃圾收集行为在这个区域是比较少出现的，主要是针对常量池的回收和类型的卸载，这部分的垃圾回收确实也是必要的
+         当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常
+
+
+6、运行时常量池(runtime constant pool) 
+              它是方法区的一部分，那么运行时常量池就会受到方法区的内存限制，当常量池无法再申请到内存分配的时候就会抛出OutOfMemoryError异常
+
+
+7、直接内存(direct memory)
+          并不是java运行时数据区域的也不是java虚拟机规范中定义的内存区域，但是这部分内容也被频繁地使用，而且也会导致OutOfMemoryError异常
+
+                                         

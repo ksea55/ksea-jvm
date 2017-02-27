@@ -1,0 +1,5 @@
+类型转换:l2i
+出栈入栈操作:aload、astore
+运算:iadd,isub
+流程控制:ifeq、ifne
+函数调用:invokevirtual 、invokeinterface 、invokesepcial、invokestatic
